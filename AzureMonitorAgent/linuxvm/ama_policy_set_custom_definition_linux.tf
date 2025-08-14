@@ -25,7 +25,7 @@ provider "azurerm" {
 variable "subscription_id" {
   description = "Azure Subscription ID"
   type        = string
-  default     = "14643a1d-597b-4575-8c72-5ed4d18bfa82"
+  default     = "<subscriptionID>"
 }
 
 variable "user_assigned_identity_name" {
@@ -378,4 +378,5 @@ resource "azurerm_policy_set_definition" "linux_ama_policy_set" {
       }
     })
   }
+
 }
