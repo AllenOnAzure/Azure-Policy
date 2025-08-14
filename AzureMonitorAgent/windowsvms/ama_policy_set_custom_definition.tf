@@ -63,7 +63,7 @@ resource "azurerm_log_analytics_workspace" "ama" {
 
 # Create Data Collection Rule (DCR)
 resource "azurerm_monitor_data_collection_rule" "ama" {
-  name                = "AMA-deployment-DCR"
+  name                = "AMA-Windows-DCR"
   location            = azurerm_resource_group.ama.location
   resource_group_name = azurerm_resource_group.ama.name
 
@@ -329,4 +329,5 @@ resource "azurerm_policy_set_definition" "example" {
       }
     })
   }
+
 }
