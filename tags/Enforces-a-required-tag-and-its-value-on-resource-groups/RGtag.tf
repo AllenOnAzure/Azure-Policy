@@ -64,17 +64,17 @@ resource "azurerm_policy_definition" "require_environment_tag" {
     }
   })
 }
+
 #################### POLICY ASSIGNMENT ########################################
 
 resource "azurerm_subscription_policy_assignment" "assignment" {
   name                 = "Enforces a required tag and its value on resource groups"
-  policy_definition_id = "/providers/Microsoft.Authorization/policyDefinitions/8ce3da23-7156-49e4-b145-24f95f9dcb46"
+  policy_definition_id = azurerm_policy_definition.require_environment_tag.id
   subscription_id      = "/subscriptions/${var.subscription_id}"
 
   parameters = jsonencode({
-    effect = {
-      value = "Audit"
+    allowedValues = {
+      value = ["dev", "test", "prod"]
     }
   })
 }
-################################################################################
