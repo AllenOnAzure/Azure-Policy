@@ -1,10 +1,3 @@
-#Require a tag and its value on resource groups
-
-DEFINITION:
-Require a tag and its value on resource groups
-ASSIGNMENT:
-Require a tag and its value on resource groups
-
 ################## PROVIDER ########################################
 # Configure the Azure provider
 terraform {
@@ -27,7 +20,7 @@ variable "subscription_id" {
   description = "Azure Subscription ID"
   type        = string
 }
-  
+
 ##################   POLICY DEFINITION TAG   ##################
 
 resource "azurerm_policy_definition" "require_environment_tag" {
@@ -36,6 +29,10 @@ resource "azurerm_policy_definition" "require_environment_tag" {
   mode         = "All"
   display_name = "Require environment tag on resource groups"
   description  = "Enforces resource groups with 'environment' tag with allowed values."
+  metadata = jsonencode({
+    version  = "1.0.0"
+    category = "Tags"
+  })
 
   parameters = jsonencode({
     allowedValues = {
