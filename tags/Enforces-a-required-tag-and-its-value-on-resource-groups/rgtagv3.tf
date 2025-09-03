@@ -32,7 +32,7 @@ variable "subscription_id" {
 ##################   POLICY DEFINITION TAG   ###########################################
 
 resource "azurerm_policy_definition" "require_multiple_tags" {
-  name         = "Require multiple tags on resource groups"
+  name         = "Enforces required tags and their values on resource groups"
   policy_type  = "Custom"
   mode         = "All"
   display_name = "Enforces required tags and their values on resource groups"
@@ -227,32 +227,40 @@ resource "azurerm_policy_definition" "require_multiple_tags" {
 #################### POLICY ASSIGNMENT ########################################
 
 resource "azurerm_subscription_policy_assignment" "assignment" {
-  name                 = "Require multiple tags on resource groups"
+  name                 = "Enforces required tags and their values on resource groups"
   policy_definition_id = azurerm_policy_definition.require_multiple_tags.id
   subscription_id      = "/subscriptions/${var.subscription_id}"
 
   parameters = jsonencode({
+
     platformAllowedValues = {
       value = ["Finance", "IT", "Sales", "Marketing"]
     }
+
     costcenterAllowedValues = {
       value = ["9800", "5566", "3012", "4512"]
     }
+
     BCAllowedValues = {
       value = ["Tier 0 - Mission-Critical", "Tier 1 - Business-Critical", "Tier 2 - Business-Operational", "Tier 3 - Dev/Test/Low Priority"]
     }
+
     replicationAllowedValues = {
       value = ["Geo-redundant storage (GRS)", "Zone-redundant storage (ZRS)", "Locally redundant storage (LRS)"]
     }
+
     snoozingAllowedValues = {
       value = ["None", "BusinessHours-8x5", "Off Hours-Weekends"]
     }
+
     environmentAllowedValues = {
       value = ["Development", "Test", "Production", "Sandbox", "Staging", "UAT"]
     }
+
     roleAllowedValues = {
       value = ["Allen Visser", "Bruce Wayne", "Clark Kent", "Barry Allen", "Dick Grayson", "Jason Todd"]
     }
+
     createdByAllowedValues = {
       value = ["Allen Visser", "Bruce Wayne", "Clark Kent", "Barry Allen", "Dick Grayson", "Jason Todd"]
     }
@@ -272,5 +280,4 @@ resource "azurerm_subscription_policy_assignment" "assignment" {
       value = ["External_Vendor1", "External_Vendor2", "External_Vendor3"]
     }
   })
-
 }      
