@@ -1,0 +1,12 @@
+# Required parameters
+subscription_id             = "14643a1d-597b-4575-8c72-5ed4d18bfa82"
+location                    = "UK South"
+resource_group_name         = "ServiceHealth-monitoring-rg"
+user_assigned_identity_name = "ServiceHealth-UAMI"
+user_assigned_identity_rg   = "ServiceHealth-monitoring-rg"
+tenant_id                   = "e76846f1-8785-4694-9420-f8ddd1fcab1f"
+client_id                   = "8eb24df8-53de-4bbf-b253-1c820b0e218f"
+client_secret               = ""
+alertRuleName               = "ServiceHealthSubscription-Alert-Rule"
+newActionGroupName          = "ServiceHealthAlert-AG"
+email_address               = "allen.visser@crgtechnology.com"
