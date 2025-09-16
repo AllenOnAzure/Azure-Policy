@@ -1,10 +1,4 @@
-#Enforces required tags and their values on resource groups
-/*These are compulsory values that must be present and cannot be renamed:
-    createdByAllowedValues 
-    multicloudAllowedValues
-    platformAllowedValues
-    roleAllowedValues
-   */
+#Network interfaces should not have public IPs
 
 ################## PROVIDER ############################################################
 # Configure the Azure provider
@@ -78,4 +72,5 @@ resource "azurerm_subscription_policy_assignment" "deny_public_ip_nics" {
   description  = "Assignment of the 'Network interfaces should not have public IPs' policy"
   display_name = "Network interfaces should not have public IPs"
 }
+
 ################################################################################
